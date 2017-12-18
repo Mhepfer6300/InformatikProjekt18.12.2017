@@ -27,15 +27,21 @@ $(document).ready(function () {
           } 
        }); 
     });
-    $(document).on("click","#anmeldeknopf",function(){
+//
+
+$(document).on("click","#registrierknopf",function(){
+    $("body").html("Bitte registrieren!");
+});
+    $(document).on("click","#registrierknopf2",function(){
        $.post("../anfrage",{
-           typ: "anmeldedaten",
-           anmeldename: $("#anmeldename").val(),
-           passwort: $("#passwort").val()
+           typ: "registrierdaten",
+           registrierungsname: $("#Registrierungsname").val(),
+           passwort: $("#neuespasswort").val(),
+           passwortbestätigen: $("#neuespasswortbestätigen")
        }, function(data){
-          if (data.typ=="überprüfung"){
+          if (data.typ=="erstelleUser"){
               if (data.text=="ok"){
-                  $("body").html("Gratulation, du bist angemeldet!")
+                  $("body").html("Gratulation, du bist registriert!")
                           .append("<br><input type='button' value='logout' id='logout'/>");
                           
               } else {
@@ -56,7 +62,7 @@ $(document).ready(function () {
                         $("body").html("Name: <input type='text' id='anmeldename'/><br>")
                         .append("Passwort: <input type='password' id='passwort'/><br>\n")
                         .append("<input type='button' value='OK' id='anmeldeknopf'/><br>")
-                        .append("<input type='button' value='Registrieren' id='Registrierungsknopf'/>");
+                        .append("<input type='button' value='Registrieren' id='registrierknopf'/>");
                     } else {
                         $("body").html("Gratulation, du bist angemeldet!")
                           .append("<br><input type='button' value='logout' id='logout'/>");
